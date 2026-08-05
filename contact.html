@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | DataCentral</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -29,38 +29,53 @@
   <main>
     <div class="page-header">
       <h1>Contact Us</h1>
-      <p>Placeholder introduction inviting visitors to reach out.</p>
+      <p>Curious where your business is leaking? Let's find out. No cost, no obligation, just a clear picture of what it's costing you, and what it would take to fix it.</p>
+      <a href="#contact-form" class="btn">Book a Free Leak Audit</a>
     </div>
 
-    <section class="section">
+    <section class="section" id="contact-form">
+      <h2 class="section-title">Get In Touch</h2>
       <div class="contact-layout">
-        <form>
+        <form id="contact-form-el" class="contact-form">
           <div>
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" />
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div>
+            <label for="business">Business Name</label>
+            <input type="text" id="business" name="business" placeholder="Your business name" />
           </div>
           <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" />
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
           </div>
           <div>
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" placeholder="Subject" />
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
           </div>
           <div>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Type your message..."></textarea>
+            <label for="industry">Industry</label>
+            <select id="industry" name="industry">
+              <option value="">Select your industry</option>
+              <option>Home Services</option>
+              <option>Healthcare</option>
+              <option>Legal</option>
+              <option>Real Estate</option>
+              <option>Insurance</option>
+              <option>Hospitality</option>
+              <option>Retail</option>
+              <option>Accounting</option>
+              <option>Education</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Message: What's going on in your business right now?</label>
+            <textarea id="message" name="message" placeholder="Tell us where you think you're leaking..."></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
+          <p id="contact-form-status" class="contact-form-status" hidden></p>
         </form>
-
-        <div class="info-card">
-          <h3>Contact Information</h3>
-          <p>Placeholder address line 1</p>
-          <p>Placeholder address line 2</p>
-          <p>Phone: (555) 123-4567</p>
-          <p>Email: info@example.com</p>
-        </div>
       </div>
     </section>
   </main>
@@ -69,7 +84,7 @@
     <div class="footer-container">
       <div>
         <h4>DataCentral</h4>
-        <p>Placeholder tagline or short description.</p>
+        <p>AI systems that plug the four leaks in local business revenue.</p>
       </div>
       <div>
         <h4>Navigate</h4>
@@ -81,19 +96,12 @@
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li>info@example.com</li>
-          <li>(555) 123-4567</li>
-        </ul>
-      </div>
     </div>
     <div class="footer-bottom">
       &copy; 2026 DataCentral. All rights reserved.
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

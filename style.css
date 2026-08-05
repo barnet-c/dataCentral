@@ -114,6 +114,16 @@ nav ul li a.active {
   text-align: center;
 }
 
+.hero-eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-primary);
+  margin-bottom: 14px;
+}
+
 .hero h1 {
   font-size: 2.6rem;
   color: var(--blue-dark);
@@ -170,6 +180,10 @@ nav ul li a.active {
   color: var(--blue-pale-2);
   max-width: 600px;
   margin: 0 auto;
+}
+
+.page-header .btn {
+  margin-top: 24px;
 }
 
 /* ===== Sections / Layout ===== */
@@ -245,6 +259,17 @@ main {
   margin-bottom: 16px;
 }
 
+.industries-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.industries-cta p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
 /* ===== The Four Leaks ===== */
 .leak-list {
   display: flex;
@@ -286,6 +311,13 @@ main {
 .leak-body h3 {
   color: var(--blue-dark);
   font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.leak-tagline {
+  color: var(--blue-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
   margin-bottom: 16px;
 }
 
@@ -321,6 +353,17 @@ main {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+}
+
+.leaks-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.leaks-cta p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 20px;
 }
 
 /* ===== Services: jump nav ===== */
@@ -377,6 +420,12 @@ main {
 .service-group-header h2 {
   font-size: 1.8rem;
   color: var(--blue-dark);
+}
+
+.service-group-intro {
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: -16px 0 28px;
 }
 
 .service-list {
@@ -499,31 +548,43 @@ main {
   color: var(--white);
 }
 
+.about-cta {
+  text-align: center;
+}
+
+.about-cta h2 {
+  font-size: 1.7rem;
+  color: var(--blue-dark);
+  margin-bottom: 24px;
+}
+
 /* ===== Contact form ===== */
 .contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-width: 800px) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-form {
+.contact-form {
+  width: 100%;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  background: var(--blue-pale);
+  border-radius: 16px;
+  padding: 36px;
+}
+
+.contact-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 label {
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--text-dark);
-  margin-bottom: -8px;
 }
 
 input,
@@ -551,20 +612,20 @@ textarea {
   min-height: 140px;
 }
 
-.info-card {
-  background: var(--blue-pale);
-  border-radius: 12px;
-  padding: 28px;
+.contact-form-status {
+  font-size: 0.9rem;
+  padding: 12px 14px;
+  border-radius: 8px;
 }
 
-.info-card h3 {
-  color: var(--blue-dark);
-  margin-bottom: 16px;
+.contact-form-status.is-success {
+  background: #e6f4ea;
+  color: #1e7d3c;
 }
 
-.info-card p {
-  margin-bottom: 10px;
-  color: var(--text-muted);
+.contact-form-status.is-error {
+  background: #fbe6e2;
+  color: #b93b21;
 }
 
 /* ===== Footer ===== */
