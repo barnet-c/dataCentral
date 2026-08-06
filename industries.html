@@ -4,9 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Industries | DataCentral</title>
+  <meta name="description" content="AI revenue and workflow systems tailored to the realities of local service businesses." />
+  <meta name="theme-color" content="#05060a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23f6f8fc'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%236d8cff' stroke-width='1.4'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    document.documentElement.classList.add("js");
+    // Decided here, not in main.js: by the time main.js runs the browser has
+    // already painted a frame of the "000" curtain on every internal navigation.
+    try {
+      if (sessionStorage.getItem("dc-intro") === "1") {
+        document.documentElement.classList.add("intro-done");
+      }
+    } catch (err) {}
+  </script>
+  <noscript><style>.preloader{display:none}.industry-panel[hidden]{display:block}.industry-list{display:none}</style></noscript>
 </head>
 <body>
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-brand">DataCentral</div>
+    <div class="preloader-mark">000</div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <div class="nav-container">
@@ -20,69 +46,250 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html" class="active">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-sm nav-cta">Free audit</a>
+      </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main" class="industries-page">
     <div class="page-header">
-      <h1>Target Industries</h1>
-      <p>The Four Leaks show up everywhere, but the details change by industry. We tailor every system to how your business actually runs.</p>
+      <div class="page-canvas" data-crystal aria-hidden="true"></div>
+      <span class="page-kicker" data-reveal>Nine industries, one shape</span>
+      <h1 data-reveal>Your industry changes the details. Not the leaks.</h1>
+      <p>Response, follow-up, retention and admin drain revenue everywhere. What changes is where each one hides, and which is worth closing first.</p>
     </div>
 
-    <section class="section">
-      <div class="grid">
-        <div class="card">
-          <h3>Home Services</h3>
-          <p>Missed calls are missed jobs.</p>
-        </div>
-        <div class="card">
-          <h3>Healthcare</h3>
-          <p>Every patient deserves a fast, accurate response.</p>
-        </div>
-        <div class="card">
-          <h3>Legal</h3>
-          <p>Responsiveness is half of client trust.</p>
-        </div>
-        <div class="card">
-          <h3>Real Estate</h3>
-          <p>The fastest response wins the listing.</p>
-        </div>
-        <div class="card">
-          <h3>Insurance</h3>
-          <p>Speed and follow-up decide who gets the policy.</p>
-        </div>
-        <div class="card">
-          <h3>Hospitality</h3>
-          <p>First impressions happen before anyone arrives.</p>
-        </div>
-        <div class="card">
-          <h3>Retail</h3>
-          <p>Every customer question is a sale in progress.</p>
-        </div>
-        <div class="card">
-          <h3>Accounting</h3>
-          <p>Deadlines and documents, handled without the chase.</p>
-        </div>
-        <div class="card">
-          <h3>Education</h3>
-          <p>Enquiries deserve a fast, human answer.</p>
-        </div>
+    <section class="industry-index" data-industries>
+      <div class="industry-list" role="tablist" aria-label="Industries" aria-orientation="vertical">
+        <button class="industry-row" type="button" role="tab" id="ind-tab-1" aria-controls="ind-panel-1" aria-selected="true">
+          <span class="industry-num">01</span>
+          <span class="industry-name">Home Services</span>
+          <span class="industry-hint">Missed calls are missed jobs</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-2" aria-controls="ind-panel-2" aria-selected="false">
+          <span class="industry-num">02</span>
+          <span class="industry-name">Healthcare</span>
+          <span class="industry-hint">The queue peaks when patients are free</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-3" aria-controls="ind-panel-3" aria-selected="false">
+          <span class="industry-num">03</span>
+          <span class="industry-name">Legal</span>
+          <span class="industry-hint">First to reply is usually retained</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-4" aria-controls="ind-panel-4" aria-selected="false">
+          <span class="industry-num">04</span>
+          <span class="industry-name">Real Estate</span>
+          <span class="industry-hint">One enquiry, four agents</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-5" aria-controls="ind-panel-5" aria-selected="false">
+          <span class="industry-num">05</span>
+          <span class="industry-name">Insurance</span>
+          <span class="industry-hint">Quotes are compared side by side</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-6" aria-controls="ind-panel-6" aria-selected="false">
+          <span class="industry-num">06</span>
+          <span class="industry-name">Hospitality</span>
+          <span class="industry-hint">Decided before anyone arrives</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-7" aria-controls="ind-panel-7" aria-selected="false">
+          <span class="industry-num">07</span>
+          <span class="industry-name">Retail</span>
+          <span class="industry-hint">An unanswered question walks</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-8" aria-controls="ind-panel-8" aria-selected="false">
+          <span class="industry-num">08</span>
+          <span class="industry-name">Accounting</span>
+          <span class="industry-hint">The chasing costs you the season</span>
+        </button>
+        <button class="industry-row" type="button" role="tab" id="ind-tab-9" aria-controls="ind-panel-9" aria-selected="false">
+          <span class="industry-num">09</span>
+          <span class="industry-name">Education</span>
+          <span class="industry-hint">Enrolment all lands at once</span>
+        </button>
       </div>
 
-      <div class="industries-cta">
-        <p>Don't see your industry listed? The Four Leaks apply everywhere. Let's talk about yours.</p>
-        <a href="contact.html" class="btn">Get In Touch</a>
+      <div class="industry-stage" data-reveal>
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-1" aria-labelledby="ind-tab-1" tabindex="0">
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">01</span>
+            <h2>Home Services</h2>
+            <p>The job goes to whoever answers first, and you are usually under someone's sink when the phone rings.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>Calls land while crews are on site or on a roof. The second trade the customer rings gets the work.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Larger quotes go out once, then sit while the customer collects two more prices.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Annual services, filter changes and safety checks lapse quietly, one household at a time.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Job notes become invoices by hand, in the evening, after the last call of the day.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Missed-call text-back.</strong> It covers the van, the roof and the whole after-hours window from the first day it runs.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-2" aria-labelledby="ind-tab-2" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">02</span>
+            <h2>Healthcare</h2>
+            <p>Reception is already at capacity, and every call that queues is a patient quietly booking somewhere else.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>The phone peaks in exactly the hours patients can get away to use it.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Treatment plans are presented once and rarely revisited after the appointment ends.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Recalls and six-month checks depend on someone finding time to work the list.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Intake forms arrive on paper and get retyped into the practice system by hand.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Overflow reception.</strong> It answers only when every line is already busy, so nothing about your front desk has to change.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-3" aria-labelledby="ind-tab-3" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">03</span>
+            <h2>Legal</h2>
+            <p>Clients call several firms in the same afternoon. Being in court is not a defence against that.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>Enquiries arrive while you are in court, in a meeting, or across the desk from someone else.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Consultations finish warm and cool down without a scheduled next contact.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Wills need updating and contracts need renewing, but nothing watches the trigger dates.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Intake, conflict checks and document assembly consume hours that could have been billable.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Speed-to-lead routing.</strong> Every enquiry gets a real, useful answer inside a minute, and the right person owns it.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-4" aria-labelledby="ind-tab-4" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">04</span>
+            <h2>Real Estate</h2>
+            <p>The enquiry you just received went to three other agents at the same moment. Speed is the entire advantage.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>Enquiries land in the evening and at weekends, while you are running an inspection.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Buyers who missed out this time are the whole pipeline for next time, and hear nothing.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Past vendors and landlords hear nothing from you until they list with someone else.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Listing copy, appraisal packs and compliance paperwork, all before any selling starts.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Instant enquiry response.</strong> An immediate reply with inspection times the buyer can book without waiting for you.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-5" aria-labelledby="ind-tab-5" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">05</span>
+            <h2>Insurance</h2>
+            <p>Your quote sits in a browser tab beside two others. Silence reads as an answer.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>Enquiries arrive in bursts, and the slowest quote in the comparison loses by default.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Quoted-but-not-bound sits in a spreadsheet that nobody has time to work.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Renewals lapse quietly, and a single failed payment can end a policy outright.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Applications, endorsements and claim documents re-keyed across three systems.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Quote follow-up.</strong> A timed sequence on every quote that was never bound, stopping the moment someone replies.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-6" aria-labelledby="ind-tab-6" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">06</span>
+            <h2>Hospitality</h2>
+            <p>Enquiries arrive mid-service, when everyone on the floor already has both hands full.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>The phone rings hardest at exactly the hour nobody can reach it.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Function and group enquiries need a second touch, and almost never get one.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Regulars stop coming and nobody notices until a Tuesday is unusually quiet.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Bookings, rosters and supplier orders spread across four systems that never talk.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Service-hours booking agent.</strong> It takes the calls you cannot, so a full room never costs you the next one.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-7" aria-labelledby="ind-tab-7" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">07</span>
+            <h2>Retail</h2>
+            <p>Stock, sizing and opening-hours questions arrive on three channels at once, usually while you are serving someone.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>Direct messages, web chat and the phone all land together, and the phone usually wins.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Special orders and "I'll think about it" both end in the same silence.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Customers drift off without ever being given a reason to come back in.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Stock queries, supplier email and returns paperwork, squeezed in between customers.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>One shared inbox.</strong> Chat, social messages and SMS in one place, with instant answers on hours, stock and location.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-8" aria-labelledby="ind-tab-8" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">08</span>
+            <h2>Accounting</h2>
+            <p>Nobody leaves an accountant over the work. They leave over the chasing, the silence and the surprise.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>New enquiries arrive in the exact weeks you have no capacity to answer them.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Proposals sent during the busy period are never revisited once it ends.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Annual clients need a reason to stay that is more than the return itself.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Documents, signatures and deadlines chased by hand, every year, for everyone.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Document and signature chasing.</strong> It runs the whole compliance season without anyone drafting another reminder.</p>
+          </footer>
+        </article>
+
+        <article class="industry-panel glass" role="tabpanel" id="ind-panel-9" aria-labelledby="ind-tab-9" tabindex="0" hidden>
+          <header class="industry-panel-head">
+            <span class="industry-panel-num">09</span>
+            <h2>Education</h2>
+            <p>Enrolment enquiries arrive in a narrow window and comfortably outrun a front office staffed for the rest of the year.</p>
+          </header>
+          <dl class="industry-leaks">
+            <div><dt><i>01</i>Response</dt><dd>Enquiries spike across a few weeks, then the phones are quiet for the other forty-eight.</dd></div>
+            <div><dt><i>02</i>Follow-up</dt><dd>Tours and trial classes happen, and then nothing happens.</dd></div>
+            <div><dt><i>03</i>Retention</dt><dd>Re-enrolment is quietly assumed rather than actually asked for.</dd></div>
+            <div><dt><i>04</i>Admin</dt><dd>Enrolment forms, permissions and reporting, most of it still on paper somewhere.</dd></div>
+          </dl>
+          <footer class="industry-start">
+            <span class="industry-start-label">Start here</span>
+            <p><strong>Enrolment responder.</strong> Families get an answer immediately and book their own tour, in season and out.</p>
+          </footer>
+        </article>
       </div>
+    </section>
+
+    <section class="closing-cta">
+      <span class="section-kicker" data-reveal>Not on the list</span>
+      <h2 data-reveal>The four leaks do not care what you sell.</h2>
+      <p data-reveal>If a phone rings, a quote goes out, or a customer can quietly stop coming back, the same four gaps are open. Tell us how yours runs and we will map them.</p>
+      <a href="contact.html" class="btn" data-reveal>Talk about your business</a>
     </section>
   </main>
 
   <footer>
     <div class="footer-container">
-      <div>
-        <h4>DataCentral</h4>
+      <div class="footer-brand">
+        <a href="index.html" class="logo">DataCentral</a>
         <p>AI systems that plug the four leaks in local business revenue.</p>
       </div>
       <div>
@@ -92,12 +299,21 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="contact.html">Book a free leak audit</a></li>
+          <li><a href="services.html">Browse the systems</a></li>
+          <li><a href="industries.html">Find your industry</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 DataCentral. All rights reserved.
+      <span>&copy; 2026 DataCentral</span>
+      <span>AI revenue systems for local business</span>
     </div>
   </footer>
 

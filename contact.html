@@ -4,9 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | DataCentral</title>
+  <meta name="description" content="Book a free DataCentral leak audit and identify where your business is losing revenue or time." />
+  <meta name="theme-color" content="#05060a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23f6f8fc'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%236d8cff' stroke-width='1.4'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    document.documentElement.classList.add("js");
+    // Decided here, not in main.js: by the time main.js runs the browser has
+    // already painted a frame of the "000" curtain on every internal navigation.
+    try {
+      if (sessionStorage.getItem("dc-intro") === "1") {
+        document.documentElement.classList.add("intro-done");
+      }
+    } catch (err) {}
+  </script>
+  <noscript><style>.preloader{display:none}</style></noscript>
 </head>
 <body>
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-brand">DataCentral</div>
+    <div class="preloader-mark">000</div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <div class="nav-container">
@@ -20,23 +46,45 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html" class="active">Contact Us</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-sm nav-cta">Free audit</a>
+      </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main" class="contact-page">
     <div class="page-header">
-      <h1>Contact Us</h1>
+      <div class="page-canvas" data-crystal aria-hidden="true"></div>
+      <span class="page-kicker" data-reveal>Free leak audit</span>
+      <h1 data-reveal>Let's find the first fix worth making.</h1>
       <p>Curious where your business is leaking? Let's find out. No cost, no obligation, just a clear picture of what it's costing you, and what it would take to fix it.</p>
       <a href="#contact-form" class="btn">Book a Free Leak Audit</a>
     </div>
 
     <section class="section" id="contact-form">
-      <h2 class="section-title">Get In Touch</h2>
+      <h2 class="section-title" data-reveal>Get In Touch</h2>
       <div class="contact-layout">
-        <form id="contact-form-el" class="contact-form">
+        <aside class="contact-aside" data-reveal>
+          <span class="section-kicker" data-reveal>What happens next</span>
+          <h3>A focused conversation, not a sales ambush.</h3>
+          <ol>
+            <li><span>01</span><p>We learn how enquiries, quotes, customers, and admin move through your business.</p></li>
+            <li><span>02</span><p>We identify the gaps with the clearest cost and fastest path to improvement.</p></li>
+            <li><span>03</span><p>You leave with a practical first step, whether we build it or not.</p></li>
+          </ol>
+          <!-- Populated from CONTACT_EMAIL in main.js. Stays hidden until that is set,
+               so a placeholder address never ships to a visitor. -->
+          <p class="contact-direct" data-contact-direct hidden>
+            Prefer email? <a href="#" data-contact-link></a>
+          </p>
+        </aside>
+        <!-- novalidate: we render our own styled field errors instead of the
+             browser's native tooltips, which never matched the rest of the page. -->
+        <form id="contact-form-el" class="contact-form glass" data-reveal novalidate>
           <div>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required />
@@ -74,7 +122,7 @@
             <textarea id="message" name="message" placeholder="Tell us where you think you're leaking..."></textarea>
           </div>
           <button type="submit" class="btn">Send Message</button>
-          <p id="contact-form-status" class="contact-form-status" hidden></p>
+          <p id="contact-form-status" class="contact-form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
     </section>
@@ -82,8 +130,8 @@
 
   <footer>
     <div class="footer-container">
-      <div>
-        <h4>DataCentral</h4>
+      <div class="footer-brand">
+        <a href="index.html" class="logo">DataCentral</a>
         <p>AI systems that plug the four leaks in local business revenue.</p>
       </div>
       <div>
@@ -93,12 +141,21 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="contact.html">Book a free leak audit</a></li>
+          <li><a href="services.html">Browse the systems</a></li>
+          <li><a href="industries.html">Find your industry</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 DataCentral. All rights reserved.
+      <span>&copy; 2026 DataCentral</span>
+      <span>AI revenue systems for local business</span>
     </div>
   </footer>
 

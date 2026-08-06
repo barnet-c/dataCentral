@@ -4,9 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | DataCentral</title>
+  <meta name="description" content="DataCentral makes proven AI capabilities practical and measurable for local business owners." />
+  <meta name="theme-color" content="#05060a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23f6f8fc'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%236d8cff' stroke-width='1.4'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    document.documentElement.classList.add("js");
+    // Decided here, not in main.js: by the time main.js runs the browser has
+    // already painted a frame of the "000" curtain on every internal navigation.
+    try {
+      if (sessionStorage.getItem("dc-intro") === "1") {
+        document.documentElement.classList.add("intro-done");
+      }
+    } catch (err) {}
+  </script>
+  <noscript><style>.preloader{display:none}</style></noscript>
 </head>
 <body>
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-brand">DataCentral</div>
+    <div class="preloader-mark">000</div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <div class="nav-container">
@@ -20,48 +46,93 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html" class="active">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-sm nav-cta">Free audit</a>
+      </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main" class="about-page">
     <div class="page-header">
-      <h1>About Us</h1>
-      <p>Most local businesses aren't losing to competitors. They're losing to leaks.</p>
+      <div class="page-canvas" data-crystal aria-hidden="true"></div>
+      <span class="page-kicker" data-reveal>Why DataCentral exists</span>
+      <h1 data-reveal>Built for the business behind the business.</h1>
+      <p>Most local businesses are not losing to competitors. They are losing to small, expensive gaps nobody has had time to close.</p>
     </div>
 
-    <section class="section">
-      <h2 class="section-title">The Problem</h2>
-      <p class="section-subtitle">Behind almost every local business (a contractor, a clinic, a law firm, a real estate office) is an owner who is genuinely great at the work, and quietly overwhelmed by everything around it. Calls go unanswered during the busiest hour of the day. Quotes are sent once, then forgotten. Customers stop coming back, and no one notices until the numbers do. And the owner, who should be running the business, spends evenings on data entry instead of with their family.</p>
-      <p class="section-subtitle">None of this is dramatic. That's exactly what makes it dangerous. It doesn't show up as one lost sale or one angry customer. It shows up gradually, as a slow, invisible tax on revenue that most businesses have simply learned to accept as the cost of doing business.</p>
-    </section>
-
-    <section class="section section-alt">
-      <h2 class="section-title">What We Believe</h2>
-      <p class="section-subtitle">We built DataCentral around a simple observation: these four leaks (response, follow-up, retention, and admin) are close to universal, and every one of them can be closed with the same kind of AI-driven system already running quietly in the background at larger, better-resourced companies.</p>
-      <p class="section-subtitle">What's been out of reach for local businesses was never the idea. It's been the cost, the complexity, and the in-house expertise it's taken to build it. We exist to close that gap.</p>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">How We Work</h2>
-      <p class="section-subtitle">We don't start with a giant transformation project. We start with one leak, usually the fastest one to fix and the easiest one to see, like an instant text-back the moment a call is missed, because an owner should see a real result in the first week, not the first year.</p>
-      <p class="section-subtitle">From there, we build out the rest of the system leak by leak, always mapped back to the Four Leaks framework, so every project has a clear reason to exist and a clear number attached to it. Our goal isn't to sell software. It's to give owners back the revenue that's already theirs, and the time they started the business for in the first place.</p>
-    </section>
-
-    <section class="section section-alt">
-      <div class="about-cta">
-        <h2>Stop the leaks. Keep what's already yours.</h2>
-        <a href="contact.html" class="btn">Book a Free Leak Audit</a>
+    <section class="about-chapter">
+      <div class="about-chapter-label" data-reveal>
+        <span class="tabular">01</span>
+        <h2>The problem</h2>
       </div>
+      <div class="about-chapter-body">
+        <p class="about-lead has-dropcap" data-reveal>Behind almost every local business is an owner who is genuinely good at the work, and quietly overwhelmed by everything around it.</p>
+        <p data-reveal>Calls go unanswered during the busiest hour of the day. Quotes are sent once, then forgotten. Customers stop coming back, and nobody notices until the numbers do. The paperwork that should take an afternoon takes every evening instead.</p>
+        <p data-reveal>None of it is dramatic, and that is exactly what makes it expensive. It never arrives as one lost sale or one angry customer. It arrives as a slow, invisible tax that most businesses have simply learned to accept as the cost of doing business.</p>
+      </div>
+    </section>
+
+    <blockquote class="about-pull" data-reveal>
+      <p>The idea was never the barrier.<br /><em>The cost of building it was.</em></p>
+      <cite>Every system we build already runs quietly inside larger, better-resourced companies.</cite>
+    </blockquote>
+
+    <section class="about-chapter">
+      <div class="about-chapter-label" data-reveal>
+        <span class="tabular">02</span>
+        <h2>What we believe</h2>
+      </div>
+      <div class="about-chapter-body">
+        <p class="about-lead" data-reveal>Four leaks — response, follow-up, retention and admin — are close to universal, and each one can be closed with technology that already exists and already works.</p>
+        <p data-reveal>What has kept it out of reach for local businesses was never the concept. It was the cost, the integration work, and the in-house expertise needed to assemble it and keep it running. Closing that distance is the entire reason we exist.</p>
+        <p data-reveal>So we do not sell transformation, platforms, or a strategy deck. We find the gap costing you the most, close it, and show you the number it returned.</p>
+      </div>
+    </section>
+
+    <section class="principles-band">
+      <div class="principles-inner">
+        <span class="section-kicker" data-reveal>Our operating principles</span>
+        <h2>Useful beats impressive.</h2>
+        <div class="principles-grid">
+          <article data-reveal><span>01</span><h3>Start with evidence</h3><p>Map what the gap is costing before choosing any technology to close it.</p></article>
+          <article data-reveal><span>02</span><h3>Fit the real workflow</h3><p>Build around how the team works today, not an idealised version of it.</p></article>
+          <article data-reveal><span>03</span><h3>Make value visible</h3><p>Every system reports an outcome the owner can read without a translator.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-chapter">
+      <div class="about-chapter-label" data-reveal>
+        <span class="tabular">03</span>
+        <h2>How we work</h2>
+      </div>
+      <div class="about-chapter-body">
+        <p class="about-lead" data-reveal>We do not open with a transformation project. We open with one leak — usually the fastest to close and the easiest to see.</p>
+        <p data-reveal>An owner should see a real result in the first weeks, not the first year. From there we build out leak by leak, each one mapped back to the framework, so every project has a reason to exist and a number attached to it.</p>
+        <ul class="about-refusals" data-reveal>
+          <li><span>We will say no</span><p>If the gap is not costing you enough to justify the build, we will tell you and you keep your money.</p></li>
+          <li><span>We will not migrate you</span><p>If a system requires abandoning software your team already knows, it is the wrong system.</p></li>
+          <li><span>We will not fake a person</span><p>Anything needing judgement routes to a human. We do not build things that pretend to be you.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="closing-cta">
+      <span class="section-kicker" data-reveal>A practical first step</span>
+      <h2 data-reveal>Stop the leaks. Keep what is already yours.</h2>
+      <p data-reveal>One focused conversation, no cost, and a clear first move at the end of it — whether we build it or not.</p>
+      <a href="contact.html" class="btn" data-reveal>Book a free leak audit</a>
     </section>
   </main>
 
   <footer>
     <div class="footer-container">
-      <div>
-        <h4>DataCentral</h4>
+      <div class="footer-brand">
+        <a href="index.html" class="logo">DataCentral</a>
         <p>AI systems that plug the four leaks in local business revenue.</p>
       </div>
       <div>
@@ -71,12 +142,21 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="contact.html">Book a free leak audit</a></li>
+          <li><a href="services.html">Browse the systems</a></li>
+          <li><a href="industries.html">Find your industry</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 DataCentral. All rights reserved.
+      <span>&copy; 2026 DataCentral</span>
+      <span>AI revenue systems for local business</span>
     </div>
   </footer>
 

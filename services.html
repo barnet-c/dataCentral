@@ -4,9 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | DataCentral</title>
+  <meta name="description" content="Explore practical AI systems for response, follow-up, retention, and administration in local businesses." />
+  <meta name="theme-color" content="#05060a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23f6f8fc'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%236d8cff' stroke-width='1.4'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    document.documentElement.classList.add("js");
+    // Decided here, not in main.js: by the time main.js runs the browser has
+    // already painted a frame of the "000" curtain on every internal navigation.
+    try {
+      if (sessionStorage.getItem("dc-intro") === "1") {
+        document.documentElement.classList.add("intro-done");
+      }
+    } catch (err) {}
+  </script>
+  <noscript><style>.preloader{display:none}</style></noscript>
 </head>
 <body>
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-brand">DataCentral</div>
+    <div class="preloader-mark">000</div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <div class="nav-container">
@@ -20,15 +46,21 @@
           <li><a href="services.html" class="active">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-sm nav-cta">Free audit</a>
+      </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main" class="services-page">
     <div class="page-header">
-      <h1>Services</h1>
+      <div class="page-canvas" data-crystal aria-hidden="true"></div>
+      <span class="page-kicker" data-reveal>Practical systems, clear outcomes</span>
+      <h1 data-reveal>Fix the leak. Keep the revenue.</h1>
       <p>We organize everything we build around the Four Leaks, so you always know exactly what problem a service solves, and what it's worth to fix it.</p>
     </div>
 
@@ -41,17 +73,17 @@
 
     <!-- Leak 1 — Response -->
     <section class="section service-group" id="leak-1">
-      <div class="service-group-header">
+      <div class="service-group-header" data-reveal>
         <span class="service-group-num">01</span>
         <div>
           <span class="service-group-eyebrow">Leak 1</span>
           <h2>Response</h2>
         </div>
       </div>
-      <p class="service-group-intro">Every call, form, and message is a chance to earn a customer, or lose one to whoever answers first. These are the systems that make sure it's always you.</p>
+      <p class="service-group-intro" data-reveal>Every call, form, and message is a chance to earn a customer, or lose one to whoever answers first. These are the systems that make sure it's always you.</p>
 
       <div class="service-list">
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>AI Voice Agent</h3>
             <div class="badge-group">
@@ -62,11 +94,11 @@
           <p class="service-does">Answers calls 24/7, handles FAQs, books and reschedules appointments, sends confirmations, transfers to a human when needed.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Voice platform + orchestration, integrated with their calendar and CRM.</p>
+            <p>A voice platform wired into your calendar and CRM, so a booking taken at 2am is on the schedule by morning.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>AI Receptionist (overflow)</h3>
             <div class="badge-group">
@@ -77,11 +109,11 @@
           <p class="service-does">Picks up only when all lines are busy or out of hours, so nothing goes to voicemail.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Same stack, narrower scope — an easier first sale than full call handling.</p>
+            <p>The same voice stack, scoped to the overflow. Your team still answers every call it can reach.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Missed-Enquiry Text-Back</h3>
             <div class="badge-group">
@@ -92,11 +124,11 @@
           <p class="service-does">Any unanswered call triggers an SMS within 30 seconds; replies route to a shared inbox.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Telephony + orchestration. A few hours of work.</p>
+            <p>Sits on top of the number you already publish. Nothing about how you take calls changes.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Web Chat &amp; Social Support</h3>
             <div class="badge-group">
@@ -107,11 +139,11 @@
           <p class="service-does">Answers on the website, SMS, WhatsApp, and social DMs from one knowledge base.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Off-the-shelf where possible; custom where the knowledge base is complex.</p>
+            <p>One knowledge base behind every channel, so the answer is identical wherever it is asked.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Speed-to-Lead Router</h3>
             <div class="badge-group">
@@ -122,11 +154,11 @@
           <p class="service-does">Form submission triggers a response within 60 seconds and assigns an owner.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration only. Speed is most of the win.</p>
+            <p>Connects your existing forms to your inbox and CRM. Speed is most of the win.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>After-Hours Triage</h3>
             <div class="badge-group">
@@ -137,11 +169,11 @@
           <p class="service-does">Distinguishes genuine emergencies from everything else; escalates or books accordingly.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Voice agent with escalation rules.</p>
+            <p>A voice agent with escalation rules you write, so a real emergency still reaches a real person.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Call Scoring &amp; Coaching</h3>
             <div class="badge-group">
@@ -152,29 +184,29 @@
           <p class="service-does">Transcribes and scores every call against a booking rubric; weekly digest flags calls that should have converted.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Transcription + LLM scorecard. Sold as expensive software elsewhere; simple to build.</p>
+            <p>Scored against a rubric you approve, so coaching points are specific rather than a feeling about the week.</p>
           </div>
         </div>
       </div>
 
-      <div class="service-note">
-        <p><strong>Where to start:</strong> begin every new client with missed-enquiry text-back. It takes a few hours, needs almost no integration, produces a visible result in week one, and doubles as the single best live demo in the sales process.</p>
+      <div class="service-note" data-reveal>
+        <p><strong>Where to start:</strong> missed-enquiry text-back. It takes hours rather than weeks, touches nothing else in your stack, and by the end of the first week you can count the replies it recovered.</p>
       </div>
     </section>
 
     <!-- Leak 2 — Follow-up -->
     <section class="section section-alt service-group" id="leak-2">
-      <div class="service-group-header">
+      <div class="service-group-header" data-reveal>
         <span class="service-group-num">02</span>
         <div>
           <span class="service-group-eyebrow">Leak 2</span>
           <h2>Follow-up</h2>
         </div>
       </div>
-      <p class="service-group-intro">Most sales aren't lost to a competitor. They're lost to silence. These systems make sure every quote, proposal, and lead gets followed up until it's won or closed.</p>
+      <p class="service-group-intro" data-reveal>Most sales aren't lost to a competitor. They're lost to silence. These systems make sure every quote, proposal, and lead gets followed up until it's won or closed.</p>
 
       <div class="service-list">
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Quote &amp; Proposal Follow-up</h3>
             <div class="badge-group">
@@ -185,11 +217,11 @@
           <p class="service-does">Anything unapproved after 48 hours enters a sequence, then escalates to a human task.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration polling their CRM or job system.</p>
+            <p>Watches your CRM or job system for quotes that have gone quiet, and stops the moment one replies.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Dormant-Opportunity Mining</h3>
             <div class="badge-group">
@@ -200,11 +232,11 @@
           <p class="service-does">Pulls declined or expired quotes, filters by age and relevance, and generates targeted outreach.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + LLM. Often the single largest recoverable pool in the business.</p>
+            <p>Reads the quotes already sitting in your system. Usually the largest recoverable pool in the business.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>AI Sales Agent</h3>
             <div class="badge-group">
@@ -215,11 +247,11 @@
           <p class="service-does">Qualifies inbound leads, answers questions, books meetings, updates the CRM.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Chat or voice agent with CRM write access.</p>
+            <p>A chat or voice agent that writes back to your CRM, so the record is current without anyone typing it up.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Proposal &amp; Quote Generator</h3>
             <div class="badge-group">
@@ -230,11 +262,11 @@
           <p class="service-does">Turns notes, voice memos, and photos into a branded good / better / best proposal.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Transcription + LLM + document template.</p>
+            <p>Your notes in, your template out. Nothing reaches the customer before you have read it.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Pipeline Hygiene Agent</h3>
             <div class="badge-group">
@@ -245,11 +277,11 @@
           <p class="service-does">Flags stale deals, missing fields, and unassigned leads; nudges the owner weekly.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + CRM API.</p>
+            <p>Reads your CRM on a schedule and sends one short list of what needs a decision.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Outbound &amp; Lead Generation</h3>
             <div class="badge-group">
@@ -260,7 +292,7 @@
           <p class="service-does">Prospect discovery, list building, and personalized email or LinkedIn sequences.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Data source + LLM personalization + sending platform.</p>
+            <p>Sent from your own domain against a target list you sign off on, never a bought one.</p>
           </div>
         </div>
       </div>
@@ -268,17 +300,17 @@
 
     <!-- Leak 3 — Retention -->
     <section class="section service-group" id="leak-3">
-      <div class="service-group-header">
+      <div class="service-group-header" data-reveal>
         <span class="service-group-num">03</span>
         <div>
           <span class="service-group-eyebrow">Leak 3</span>
           <h2>Retention</h2>
         </div>
       </div>
-      <p class="service-group-intro">It's far cheaper to keep a customer than to find a new one. These systems catch quiet churn before it happens, and turn happy customers into your best source of new business.</p>
+      <p class="service-group-intro" data-reveal>It's far cheaper to keep a customer than to find a new one. These systems catch quiet churn before it happens, and turn happy customers into your best source of new business.</p>
 
       <div class="service-list">
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Review &amp; Reputation Engine</h3>
             <div class="badge-group">
@@ -289,11 +321,11 @@
           <p class="service-does">Requests a review after every completed job; routes unhappy responses privately to the owner first.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + SMS. Compounds, because local ranking drives lead flow.</p>
+            <p>Triggered by job completion in the system you already use. Compounds, because local ranking drives lead flow.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Customer Reactivation</h3>
             <div class="badge-group">
@@ -304,11 +336,11 @@
           <p class="service-does">Identifies customers past their normal return interval and runs a win-back campaign.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + segmentation + LLM copy.</p>
+            <p>Segments your customer list by how long a return usually takes, then writes the offer that fits each group.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Renewal &amp; Retention</h3>
             <div class="badge-group">
@@ -319,11 +351,11 @@
           <p class="service-does">Tracks expiring plans, contracts, and subscriptions; automates renewal nudges and failed-payment recovery.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + billing system.</p>
+            <p>Reads renewal dates and failed payments straight from your billing system, so nothing lapses silently.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Referral Engine</h3>
             <div class="badge-group">
@@ -334,11 +366,11 @@
           <p class="service-does">Asks for a referral at the point of maximum satisfaction and tracks the result.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + SMS or email.</p>
+            <p>One message, sent at the right moment, tracked through to the job it produced.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Post-Service Follow-up</h3>
             <div class="badge-group">
@@ -349,7 +381,7 @@
           <p class="service-does">Day-3 check-in and satisfaction capture, feeding both the review engine and service recovery.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration.</p>
+            <p>A single scheduled message after every job, with replies landing in an inbox a person reads.</p>
           </div>
         </div>
       </div>
@@ -357,17 +389,17 @@
 
     <!-- Leak 4 — Admin -->
     <section class="section section-alt service-group" id="leak-4">
-      <div class="service-group-header">
+      <div class="service-group-header" data-reveal>
         <span class="service-group-num">04</span>
         <div>
           <span class="service-group-eyebrow">Leak 4</span>
           <h2>Admin</h2>
         </div>
       </div>
-      <p class="service-group-intro">The busywork that eats an owner's week rarely shows up on a P&amp;L, but it's the most expensive leak of all, because it's your time. These systems take the repetitive work off your plate.</p>
+      <p class="service-group-intro" data-reveal>The busywork that eats an owner's week rarely shows up on a P&amp;L, but it's the most expensive leak of all, because it's your time. These systems take the repetitive work off your plate.</p>
 
       <div class="service-list">
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Owner's Weekly Scorecard</h3>
             <div class="badge-group">
@@ -378,11 +410,11 @@
           <p class="service-does">One email every Monday morning: volume, conversion, revenue, missed enquiries, reviews, receivables.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration pulling from CRM, accounting, and Google.</p>
+            <p>Pulls from your CRM, accounting, and review profiles into one page you can read with a coffee.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>AI Knowledge Assistant</h3>
             <div class="badge-group">
@@ -390,14 +422,14 @@
               <span class="badge badge-impact-high">Impact: High</span>
             </div>
           </div>
-          <p class="service-does">Trained on SOPs, manuals, pricing, and policies so staff and customers self-serve answers.</p>
+          <p class="service-does">Trained on your SOPs, manuals, pricing, and policies, so staff and customers can find answers without asking you.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Knowledge base + retrieval + chat interface.</p>
+            <p>Built from documents you already have, and every answer cites the page it came from.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>AI Email Assistant</h3>
             <div class="badge-group">
@@ -408,11 +440,11 @@
           <p class="service-does">Categorizes the inbox, drafts replies, and surfaces what actually needs the owner.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>LLM + mail integration.</p>
+            <p>Connects to the mailbox you already use. Drafts wait for you — nothing sends on its own.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Document Processing</h3>
             <div class="badge-group">
@@ -423,11 +455,11 @@
           <p class="service-does">Extracts and validates data from invoices, intake forms, contracts, and applications.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Document AI + validation rules + system write-back.</p>
+            <p>Reads the document, checks it against your rules, and anything it is unsure of goes to a person.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Process Automation</h3>
             <div class="badge-group">
@@ -438,11 +470,11 @@
           <p class="service-does">Automates CRM updates, invoicing, approvals, onboarding, and handoffs between systems.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration across their existing stack.</p>
+            <p>Runs across the tools you already pay for, in the order your team already works.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Recruiting Responder</h3>
             <div class="badge-group">
@@ -453,11 +485,11 @@
           <p class="service-does">Replies to applicants within five minutes, screens, and offers self-scheduled interviews.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Orchestration + SMS. Solves a problem owners feel acutely.</p>
+            <p>Triggered by your job ads, with interview slots taken from your real calendar.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Internal Help Desk</h3>
             <div class="badge-group">
@@ -468,11 +500,11 @@
           <p class="service-does">Answers repeat HR and IT questions for staff.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>Knowledge assistant, internal-facing.</p>
+            <p>The same knowledge assistant, pointed at internal documents and available to staff only.</p>
           </div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card glass" data-reveal>
           <div class="service-card-head">
             <h3>Analytics Assistant</h3>
             <div class="badge-group">
@@ -480,20 +512,27 @@
               <span class="badge badge-impact-medium">Impact: Medium</span>
             </div>
           </div>
-          <p class="service-does">Answers plain-language questions about their own operating data.</p>
+          <p class="service-does">Answers plain-language questions about your own operating data.</p>
           <div class="service-delivery">
             <span class="service-delivery-label">How it's delivered</span>
-            <p>LLM over a warehouse or exports.</p>
+            <p>Reads your existing exports or reporting database, and shows the figures behind every answer.</p>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="closing-cta">
+      <span class="section-kicker" data-reveal>Not sure where to start?</span>
+      <h2>Start with the leak, not the technology.</h2>
+      <p>We will map the problem, estimate its cost, and identify the smallest useful system to build first.</p>
+      <a href="contact.html" class="btn">Book a free leak audit</a>
     </section>
   </main>
 
   <footer>
     <div class="footer-container">
-      <div>
-        <h4>DataCentral</h4>
+      <div class="footer-brand">
+        <a href="index.html" class="logo">DataCentral</a>
         <p>AI systems that plug the four leaks in local business revenue.</p>
       </div>
       <div>
@@ -503,12 +542,21 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="contact.html">Book a free leak audit</a></li>
+          <li><a href="services.html">Browse the systems</a></li>
+          <li><a href="industries.html">Find your industry</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 DataCentral. All rights reserved.
+      <span>&copy; 2026 DataCentral</span>
+      <span>AI revenue systems for local business</span>
     </div>
   </footer>
 

@@ -4,9 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home | DataCentral</title>
+  <meta name="description" content="DataCentral builds practical AI systems that recover missed revenue and save time for local businesses." />
+  <meta name="theme-color" content="#05060a" />
+  <link rel="canonical" href="https://datacentral.example/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DataCentral — AI systems for local business" />
+  <meta property="og:description" content="We find the missed calls, cold quotes, quiet customers, and buried admin costing you money — then build the systems that close them." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23f6f8fc'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%236d8cff' stroke-width='1.4'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    document.documentElement.classList.add("js");
+    // Decided here, not in main.js: by the time main.js runs the browser has
+    // already painted a frame of the "000" curtain on every internal navigation.
+    try {
+      if (sessionStorage.getItem("dc-intro") === "1") {
+        document.documentElement.classList.add("intro-done");
+      }
+    } catch (err) {}
+  </script>
+  <noscript><style>.preloader{display:none}</style></noscript>
 </head>
 <body>
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-brand">DataCentral</div>
+    <div class="preloader-mark">000</div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <div class="nav-container">
@@ -20,109 +52,374 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-sm nav-cta">Free audit</a>
+      </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
-      <span class="hero-eyebrow">AI Systems for Local Business</span>
-      <h1>Your Business Is Losing Money in Four Predictable Places.</h1>
-      <p>Missed calls. Cold quotes. Quiet customers. Buried admin. DataCentral finds exactly where you're leaking revenue, and builds the AI systems that plug it automatically.</p>
-      <a href="contact.html" class="btn">Book a Free Leak Audit</a>
+      <div class="hero-canvas" data-crystal aria-hidden="true"></div>
+      <div class="hero-body">
+        <p class="eyebrow" data-reveal>AI systems for local business</p>
+        <h1 data-lines>
+          <span class="line"><span>Your business is</span></span>
+          <span class="line"><span class="glow">leaking revenue</span></span>
+          <span class="line"><span class="dim">in four places.</span></span>
+        </h1>
+        <div class="hero-lower">
+          <p class="hero-lede" data-reveal>We find the missed calls, cold quotes, quiet customers, and buried admin costing you money — then build the practical systems that close them.</p>
+          <div class="hero-actions" data-reveal>
+            <a href="contact.html" class="btn">Book a free leak audit</a>
+            <a href="services.html" class="link-arrow">See the systems <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <p>No platform pitch. No transformation project. One leak, fixed first — measured in weeks, not years.</p>
+        <span class="scroll-cue">Scroll</span>
+      </div>
     </section>
 
-    <section class="section leaks-section">
-      <h2 class="section-title">The Four Leaks</h2>
-      <p class="section-subtitle">Every local business, no matter the industry, loses revenue in the same four places. We call them the Four Leaks. Most owners have never mapped them. We have, and we've built a system for closing each one.</p>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Home Services</span><span class="marquee-item">Healthcare</span><span class="marquee-item">Legal</span><span class="marquee-item">Real Estate</span><span class="marquee-item">Insurance</span><span class="marquee-item">Hospitality</span><span class="marquee-item">Retail</span><span class="marquee-item">Accounting</span><span class="marquee-item">Education</span><span class="marquee-item">Home Services</span><span class="marquee-item">Healthcare</span><span class="marquee-item">Legal</span><span class="marquee-item">Real Estate</span><span class="marquee-item">Insurance</span><span class="marquee-item">Hospitality</span><span class="marquee-item">Retail</span><span class="marquee-item">Accounting</span><span class="marquee-item">Education</span>
+      </div>
+    </div>
 
-      <div class="leak-list">
-        <div class="leak-item">
-          <div class="leak-num">01</div>
-          <div class="leak-body">
+    <section class="thesis">
+      <span class="section-kicker" data-reveal>The thesis</span>
+      <p class="thesis-quote" data-lines>
+        <span class="line"><span>Most local businesses</span></span>
+        <span class="line"><span>are not losing to</span></span>
+        <span class="line"><span>competitors. <em>They are</em></span></span>
+        <span class="line"><span><em>losing to gaps.</em></span></span>
+      </p>
+      <div class="thesis-facts">
+        <div class="thesis-fact" data-reveal>
+          <span>Same four gaps</span>
+          <p>Response, follow-up, retention, admin. Industry changes the details, never the shape.</p>
+        </div>
+        <div class="thesis-fact" data-reveal>
+          <span>Already proven</span>
+          <p>Every fix already runs quietly inside larger, better-resourced companies. The idea was never the barrier.</p>
+        </div>
+        <div class="thesis-fact" data-reveal>
+          <span>One leak first</span>
+          <p>We close the gap that pays back fastest, prove the number, then build out from there.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="leaks">
+      <div class="section-head">
+        <h2 class="section-title" data-reveal>Every local business leaks in the same four places.</h2>
+        <p class="section-lede" data-reveal>No matter the industry, revenue drains through the same four gaps. Most owners have never mapped them. We have — and we've built a system for closing each one.</p>
+      </div>
+    </section>
+
+    <div class="pins">
+      <article class="pin">
+        <div class="pin-inner glass">
+          <div>
+            <p class="pin-num">Leak 01</p>
             <h3>Response</h3>
-            <p class="leak-tagline">The leads you never even know you lost.</p>
-            <div class="leak-meta">
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it is</span>
-                <p>Inbound calls, forms, and messages that go unanswered or answered too slowly — especially after hours and at peak times.</p>
-              </div>
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it costs them</span>
-                <p>Lost revenue that never enters the pipeline; they never even know it happened.</p>
-              </div>
+            <p class="pin-tag">The leads you never even know you lost.</p>
+          </div>
+          <div class="pin-cells">
+            <div class="pin-cell">
+              <span class="cell-label">What it is</span>
+              <p>Inbound calls, forms, and messages that go unanswered or answered too slowly — especially after hours and at peak times.</p>
+            </div>
+            <div class="pin-cell">
+              <span class="cell-label">What it costs</span>
+              <p>Revenue that never enters the pipeline. You never even know it happened.</p>
             </div>
           </div>
         </div>
+      </article>
 
-        <div class="leak-item">
-          <div class="leak-num">02</div>
-          <div class="leak-body">
+      <article class="pin">
+        <div class="pin-inner glass">
+          <div>
+            <p class="pin-num">Leak 02</p>
             <h3>Follow-up</h3>
-            <p class="leak-tagline">Money you already earned, never collected.</p>
-            <div class="leak-meta">
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it is</span>
-                <p>Quotes, proposals, and consultations that get one touch and then go cold.</p>
-              </div>
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it costs them</span>
-                <p>The largest recoverable pool in most businesses — revenue already earned but never collected.</p>
-              </div>
+            <p class="pin-tag">Money you already earned, never collected.</p>
+          </div>
+          <div class="pin-cells">
+            <div class="pin-cell">
+              <span class="cell-label">What it is</span>
+              <p>Quotes, proposals, and consultations that get one touch and then go cold.</p>
+            </div>
+            <div class="pin-cell">
+              <span class="cell-label">What it costs</span>
+              <p>The largest recoverable pool in most businesses — revenue already earned but never collected.</p>
             </div>
           </div>
         </div>
+      </article>
 
-        <div class="leak-item">
-          <div class="leak-num">03</div>
-          <div class="leak-body">
+      <article class="pin">
+        <div class="pin-inner glass">
+          <div>
+            <p class="pin-num">Leak 03</p>
             <h3>Retention</h3>
-            <p class="leak-tagline">The customers who just stop coming back.</p>
-            <div class="leak-meta">
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it is</span>
-                <p>Customers who quietly stop coming back; no reactivation, no reviews, no referrals.</p>
-              </div>
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it costs them</span>
-                <p>Slow erosion of the base, plus weaker local reputation and lead flow.</p>
-              </div>
+            <p class="pin-tag">The customers who just stop coming back.</p>
+          </div>
+          <div class="pin-cells">
+            <div class="pin-cell">
+              <span class="cell-label">What it is</span>
+              <p>Customers who quietly stop coming back. No reactivation, no reviews, no referrals.</p>
+            </div>
+            <div class="pin-cell">
+              <span class="cell-label">What it costs</span>
+              <p>Slow erosion of the base, plus weaker local reputation and lead flow.</p>
             </div>
           </div>
         </div>
+      </article>
 
-        <div class="leak-item">
-          <div class="leak-num">04</div>
-          <div class="leak-body">
+      <article class="pin">
+        <div class="pin-inner glass">
+          <div>
+            <p class="pin-num">Leak 04</p>
             <h3>Admin</h3>
-            <p class="leak-tagline">Your time, buried in busywork.</p>
-            <div class="leak-meta">
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it is</span>
-                <p>Owner and staff hours consumed by repetitive internal work — email, data entry, documents, reporting.</p>
-              </div>
-              <div class="leak-meta-block">
-                <span class="leak-meta-label">What it costs them</span>
-                <p>The owner's time, which is the scarcest resource in the business.</p>
-              </div>
+            <p class="pin-tag">Your time, buried in busywork.</p>
+          </div>
+          <div class="pin-cells">
+            <div class="pin-cell">
+              <span class="cell-label">What it is</span>
+              <p>Owner and staff hours consumed by repetitive internal work — email, data entry, documents, reporting.</p>
+            </div>
+            <div class="pin-cell">
+              <span class="cell-label">What it costs</span>
+              <p>The owner's time, which is the scarcest resource in the business.</p>
             </div>
           </div>
         </div>
-      </div>
+      </article>
+    </div>
 
-      <div class="leaks-cta">
-        <p>We didn't invent these problems. We just built the fix.</p>
-        <a href="services.html" class="btn btn-outline">See Where You're Leaking &rarr;</a>
+    <section class="modes">
+      <div class="section-head">
+        <h2 class="section-title" data-reveal>How we build, in three commitments.</h2>
+        <p class="section-lede" data-reveal>The technology is the easy part. These are the rules that decide whether it's still running six months later.</p>
       </div>
+      <div class="modes-grid">
+        <article class="mode-card glass" data-reveal>
+          <span>01 — Evidence first</span>
+          <h3>Cost before code</h3>
+          <p>We map what the gap is costing before we choose a tool. If the number is small, we say so and you keep your money.</p>
+        </article>
+        <article class="mode-card glass" data-reveal>
+          <span>02 — Your stack</span>
+          <h3>Fits the real workflow</h3>
+          <p>Systems connect to the tools your team already opens every morning. No migrations, no retraining week.</p>
+        </article>
+        <article class="mode-card glass" data-reveal>
+          <span>03 — Visible return</span>
+          <h3>Measured in weeks</h3>
+          <p>Every build reports what it recovered. If it can't be measured, it doesn't ship.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rail-section">
+      <div class="rail-head">
+        <h2 data-reveal>What a build actually looks like.</h2>
+        <p data-reveal>Not a platform. A specific system, wired to a specific leak, live in your business. Drag to browse.</p>
+      </div>
+      <div class="rail" data-rail>
+        <article class="rail-card glass">
+          <span class="rail-tag">Leak 01 — Response</span>
+          <h3>Instant call-back</h3>
+          <p>A missed call triggers a text within seconds, captures the job details, and books straight into your calendar. After hours included.</p>
+          <div class="rail-meta">
+            <span class="badge badge-effort-verylow">Effort: very low</span>
+            <span class="badge badge-impact-highest">Impact: highest</span>
+          </div>
+        </article>
+        <article class="rail-card glass">
+          <span class="rail-tag">Leak 02 — Follow-up</span>
+          <h3>Quote chaser</h3>
+          <p>Every quote gets a sequence instead of silence. Polite, timed, on your voice — and it stops the moment the customer replies.</p>
+          <div class="rail-meta">
+            <span class="badge badge-effort-low">Effort: low</span>
+            <span class="badge badge-impact-highest">Impact: highest</span>
+          </div>
+        </article>
+        <article class="rail-card glass">
+          <span class="rail-tag">Leak 03 — Retention</span>
+          <h3>Quiet-customer radar</h3>
+          <p>Flags customers who have gone unusually quiet, then runs a reactivation offer before they belong to someone else.</p>
+          <div class="rail-meta">
+            <span class="badge badge-effort-medium">Effort: medium</span>
+            <span class="badge badge-impact-high">Impact: high</span>
+          </div>
+        </article>
+        <article class="rail-card glass">
+          <span class="rail-tag">Leak 03 — Retention</span>
+          <h3>Review engine</h3>
+          <p>Asks at the moment the job went well, routes unhappy replies to you privately, and compounds your local search position.</p>
+          <div class="rail-meta">
+            <span class="badge badge-effort-low">Effort: low</span>
+            <span class="badge badge-impact-high">Impact: high</span>
+          </div>
+        </article>
+        <article class="rail-card glass">
+          <span class="rail-tag">Leak 04 — Admin</span>
+          <h3>Inbox triage</h3>
+          <p>Sorts, drafts, and files the repetitive mail your week disappears into. You approve; it sends.</p>
+          <div class="rail-meta">
+            <span class="badge badge-effort-medium">Effort: medium</span>
+            <span class="badge badge-impact-high">Impact: high</span>
+          </div>
+        </article>
+        <article class="rail-card glass">
+          <span class="rail-tag">Leak 04 — Admin</span>
+          <h3>Document autopilot</h3>
+          <p>Turns job notes into invoices, reports, and records without anyone retyping a line of it.</p>
+          <div class="rail-meta">
+            <span class="badge badge-effort-medium">Effort: medium</span>
+            <span class="badge badge-impact-medium">Impact: medium</span>
+          </div>
+        </article>
+      </div>
+      <p class="rail-hint">Drag / scroll &rarr;</p>
+    </section>
+
+    <section class="process-band">
+      <div class="process-inner">
+        <div class="process-intro">
+          <span class="section-kicker" data-reveal>A clear path forward</span>
+          <h2 data-reveal>Start small. Prove value. Build from there.</h2>
+          <p data-reveal>You do not need a new technology strategy. You need one expensive problem solved well.</p>
+        </div>
+        <ol class="process-list">
+          <li data-reveal>
+            <span class="tabular">01</span>
+            <div>
+              <h3>Find the leak</h3>
+              <p>We map where revenue and time are slipping through your current workflow.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="tabular">02</span>
+            <div>
+              <h3>Build the fix</h3>
+              <p>We connect a focused system to the tools your team already knows.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="tabular">03</span>
+            <div>
+              <h3>Measure the return</h3>
+              <p>You see what was recovered, what changed, and what is worth solving next.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stats-head">
+        <span class="section-kicker" data-reveal>Scope, not spin</span>
+        <p data-reveal>These are counts of what we have mapped and what we build — not client averages, and not percentages we invented for a homepage.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat glass" data-reveal>
+          <span class="stat-value" data-count="4" data-pad="2">00</span>
+          <span class="stat-label">Leaks</span>
+          <p>The whole framework. Every business loses revenue in these four places.</p>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28 L20 24 L40 25 L60 16 L80 14 L100 7 L120 4" /></svg>
+        </div>
+        <div class="stat glass" data-reveal>
+          <span class="stat-value" data-count="26" data-pad="2">00</span>
+          <span class="stat-label">Systems</span>
+          <p>Individual builds, each mapped to the one leak it closes.</p>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 L20 27 L40 20 L60 22 L80 12 L100 10 L120 3" /></svg>
+        </div>
+        <div class="stat glass" data-reveal>
+          <span class="stat-value" data-count="9" data-pad="2">00</span>
+          <span class="stat-label">Industries</span>
+          <p>Mapped leak by leak, from home services to healthcare, legal and education.</p>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0 26 L20 22 L40 24 L60 15 L80 17 L100 8 L120 6" /></svg>
+        </div>
+        <div class="stat glass" data-reveal>
+          <span class="stat-value" data-count="1" data-pad="2">00</span>
+          <span class="stat-label">At a time</span>
+          <p>We close the gap with the fastest payback, prove the number, then move to the next.</p>
+          <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0 31 L20 21 L40 23 L60 13 L80 11 L100 6 L120 2" /></svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div>
+        <span class="section-kicker" data-reveal>Straight answers</span>
+        <h2 data-reveal>Before you book.</h2>
+      </div>
+      <div class="faq-list" data-faq>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="faq-index">01</span>
+            <span>Do I need to replace the software I already use?</span>
+            <span class="faq-sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><div><p>No. Every system is built around the tools your team already opens — your phone system, inbox, calendar, and whatever you use for jobs or records. Replacing a working stack is the fastest way to get a project abandoned.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="faq-index">02</span>
+            <span>How long before anything actually changes?</span>
+            <span class="faq-sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><div><p>The first leak is usually closed in weeks, not quarters. We deliberately start with the fastest, most visible fix — an instant text-back on a missed call, for example — so you see a real result before committing to anything larger.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="faq-index">03</span>
+            <span>What happens in the free audit?</span>
+            <span class="faq-sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><div><p>One focused conversation. We walk through how enquiries, quotes, customers, and admin move through your business, identify the gaps with the clearest cost, and hand you a practical first step — whether we build it or not.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="faq-index">04</span>
+            <span>Is my business too small for this?</span>
+            <span class="faq-sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><div><p>Small businesses feel these leaks hardest, because one missed call is a bigger share of the week. The four gaps do not require scale to be expensive — they only require a phone that rings and a quote that goes out.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="faq-index">05</span>
+            <span>Will customers know they are talking to a system?</span>
+            <span class="faq-sign" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a"><div><p>Systems are written in your voice and handle the mechanical part — acknowledging fast, capturing details, following up on schedule. Anything that needs judgment routes to a person. We do not build things that pretend to be you.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-cta">
+      <span class="section-kicker" data-reveal>Your first step is free</span>
+      <h2 data-reveal>Find out what the leaks are costing you.</h2>
+      <p data-reveal>In one focused conversation we map the gaps and identify the fastest place to recover revenue or time.</p>
+      <a href="contact.html" class="btn" data-reveal>Book your free audit</a>
     </section>
   </main>
 
   <footer>
     <div class="footer-container">
-      <div>
-        <h4>DataCentral</h4>
+      <div class="footer-brand">
+        <a href="index.html" class="logo">DataCentral</a>
         <p>AI systems that plug the four leaks in local business revenue.</p>
       </div>
       <div>
@@ -132,12 +429,21 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Start here</h4>
+        <ul>
+          <li><a href="contact.html">Book a free leak audit</a></li>
+          <li><a href="services.html">Browse the systems</a></li>
+          <li><a href="industries.html">Find your industry</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 DataCentral. All rights reserved.
+      <span>&copy; 2026 DataCentral</span>
+      <span>AI revenue systems for local business</span>
     </div>
   </footer>
 
