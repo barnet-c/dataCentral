@@ -120,14 +120,31 @@ var CONTACT_EMAIL = "";
   function initSheen() {
     if (!fine) return;
 
+    var card = null;
+    var px = 0;
+    var py = 0;
+    var queued = false;
+
     document.addEventListener(
       "pointermove",
       function (event) {
-        var card = event.target.closest(".glass");
-        if (!card) return;
-        var box = card.getBoundingClientRect();
-        card.style.setProperty("--mx", ((event.clientX - box.left) / box.width) * 100 + "%");
-        card.style.setProperty("--my", ((event.clientY - box.top) / box.height) * 100 + "%");
+        // Measuring on every raw move is a layout flush per event; the sheen
+        // only has to be correct once per painted frame.
+        var next = event.target.closest && event.target.closest(".glass");
+        if (!next) return;
+        card = next;
+        px = event.clientX;
+        py = event.clientY;
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(function () {
+          queued = false;
+          if (!card) return;
+          var box = card.getBoundingClientRect();
+          if (!box.width || !box.height) return;
+          card.style.setProperty("--mx", ((px - box.left) / box.width) * 100 + "%");
+          card.style.setProperty("--my", ((py - box.top) / box.height) * 100 + "%");
+        });
       },
       { passive: true }
     );
@@ -142,12 +159,23 @@ var CONTACT_EMAIL = "";
     var targets = document.querySelectorAll(".btn, .link-arrow span");
 
     targets.forEach(function (el) {
+      var queued = false;
+      var px = 0;
+      var py = 0;
+
       el.addEventListener("pointermove", function (event) {
-        var box = el.getBoundingClientRect();
-        var dx = event.clientX - (box.left + box.width / 2);
-        var dy = event.clientY - (box.top + box.height / 2);
-        el.style.setProperty("--mag-x", dx * 0.22 + "px");
-        el.style.setProperty("--mag-y", dy * 0.3 + "px");
+        px = event.clientX;
+        py = event.clientY;
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(function () {
+          queued = false;
+          var box = el.getBoundingClientRect();
+          var dx = px - (box.left + box.width / 2);
+          var dy = py - (box.top + box.height / 2);
+          el.style.setProperty("--mag-x", dx * 0.22 + "px");
+          el.style.setProperty("--mag-y", dy * 0.3 + "px");
+        });
       });
 
       el.addEventListener("pointerleave", function () {
@@ -155,6 +183,137 @@ var CONTACT_EMAIL = "";
         el.style.removeProperty("--mag-y");
       });
     });
+  }
+
+  /* ---------- Card tilt ---------- */
+  function initTilt() {
+    if (!fine || reduced) return;
+
+    var cards = document.querySelectorAll(".mode-card, .rail-card, .service-card, .stat");
+    if (!cards.length) return;
+
+    var LIMIT = 4.2;
+
+    cards.forEach(function (el) {
+      var queued = false;
+      var px = 0;
+      var py = 0;
+
+      el.addEventListener("pointermove", function (event) {
+        px = event.clientX;
+        py = event.clientY;
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(function () {
+          queued = false;
+          var box = el.getBoundingClientRect();
+          if (!box.width || !box.height) return;
+
+          // Two small rotations expressed as one axis-angle, so the CSS
+          // `rotate` property carries the tilt and leaves `transform` and
+          // `translate` free for the hover lift and the magnet offset.
+          var ax = -((py - (box.top + box.height / 2)) / (box.height / 2)) * LIMIT;
+          var ay = ((px - (box.left + box.width / 2)) / (box.width / 2)) * LIMIT;
+          var angle = Math.sqrt(ax * ax + ay * ay);
+
+          if (angle < 0.05) {
+            el.style.rotate = "";
+            return;
+          }
+          el.style.rotate = ax.toFixed(3) + " " + ay.toFixed(3) + " 0 " + angle.toFixed(3) + "deg";
+        });
+      });
+
+      el.addEventListener("pointerleave", function () {
+        el.style.rotate = "";
+      });
+    });
+  }
+
+  /* ---------- Eased wheel scrolling ---------- */
+  /* Driven through the real scroll position rather than a transformed wrapper,
+     so sticky panels, the fixed header, scroll-linked animations and every
+     IntersectionObserver on the page keep working untouched. */
+  function initSmoothScroll() {
+    if (reduced || !fine) return;
+
+    var target = window.scrollY;
+    var current = target;
+    var running = false;
+
+    function limit() {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function jump(y) {
+      // `instant` overrides the stylesheet's smooth scroll-behavior, which
+      // would otherwise animate against this loop every frame.
+      window.scrollTo({ top: y, behavior: "instant" });
+    }
+
+    function frame() {
+      if (!running) return;
+
+      target = Math.max(0, Math.min(limit(), target));
+      var delta = target - current;
+
+      if (Math.abs(delta) < 0.5) {
+        current = target;
+        running = false;
+        jump(current);
+        return;
+      }
+
+      current += delta * 0.12;
+      jump(current);
+      window.requestAnimationFrame(frame);
+    }
+
+    // Anything we did not drive — a keyboard page-down, an anchor jump, a
+    // scrollbar drag, scrollIntoView — hands control straight back to the
+    // browser and re-anchors the next gesture to wherever the page now is.
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (running && Math.abs(window.scrollY - current) <= 2) return;
+        running = false;
+        current = target = window.scrollY;
+      },
+      { passive: true }
+    );
+
+    function scrollsVertically(node) {
+      while (node && node.nodeType === 1 && node !== document.body && node !== document.documentElement) {
+        var overflow = window.getComputedStyle(node).overflowY;
+        if ((overflow === "auto" || overflow === "scroll") && node.scrollHeight > node.clientHeight + 1) {
+          return true;
+        }
+        node = node.parentElement;
+      }
+      return false;
+    }
+
+    window.addEventListener(
+      "wheel",
+      function (event) {
+        // Zoom gestures, sideways trackpad swipes over the rails, and the
+        // line/page delta modes some mice and assistive tools send stay native.
+        if (event.ctrlKey || event.metaKey || event.altKey || event.defaultPrevented) return;
+        if (event.deltaMode !== 0) return;
+        if (Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
+        if (scrollsVertically(event.target)) return;
+
+        event.preventDefault();
+        target = Math.max(0, Math.min(limit(), (running ? target : window.scrollY) + event.deltaY));
+
+        if (!running) {
+          running = true;
+          current = window.scrollY;
+          window.requestAnimationFrame(frame);
+        }
+      },
+      { passive: false }
+    );
   }
 
   /* ---------- Header ---------- */
@@ -220,18 +379,55 @@ var CONTACT_EMAIL = "";
     });
   }
 
+  /* ---------- Word-mask headings ---------- */
+  /* Rebuilds plain headings as masked words so display type rises out of its
+     own line box instead of fading in as one block. */
+  function initSplit() {
+    if (reduced) return;
+
+    document.querySelectorAll("h1[data-reveal], h2[data-reveal]").forEach(function (el) {
+      // Only a single uninterrupted run of text is safe to rebuild — anything
+      // carrying nested markup keeps the structure the author wrote.
+      if (el.childNodes.length !== 1 || el.firstChild.nodeType !== 3) return;
+
+      var words = el.textContent.trim().split(/\s+/);
+      if (words.length < 2) return;
+
+      var frag = document.createDocumentFragment();
+
+      words.forEach(function (word, index) {
+        var mask = document.createElement("span");
+        mask.className = "word";
+        mask.style.setProperty("--w", index);
+
+        var inner = document.createElement("span");
+        inner.textContent = word;
+        mask.appendChild(inner);
+        frag.appendChild(mask);
+
+        // A real space between the inline-blocks, so the heading still wraps
+        // and still reads as one sentence to a screen reader.
+        if (index < words.length - 1) frag.appendChild(document.createTextNode(" "));
+      });
+
+      el.textContent = "";
+      el.appendChild(frag);
+      // Hands the heading from the block reveal to the word reveal, so only one
+      // of the two ever drives it.
+      el.removeAttribute("data-reveal");
+      el.setAttribute("data-words", "");
+    });
+  }
+
   /* ---------- Reveal ---------- */
   function initReveal() {
-    var targets = Array.prototype.slice.call(document.querySelectorAll("[data-reveal], [data-lines]"));
+    var targets = Array.prototype.slice.call(
+      document.querySelectorAll("[data-reveal], [data-lines], [data-words]")
+    );
     if (!targets.length) return;
 
     function show(el) {
-      if (el.classList.contains("is-in")) return;
       el.classList.add("is-in");
-      // Drop the stagger delay once revealed, or it also lags hover states.
-      window.setTimeout(function () {
-        el.style.transitionDelay = "";
-      }, 1400);
     }
 
     if (!("IntersectionObserver" in window) || reduced) {
@@ -252,7 +448,7 @@ var CONTACT_EMAIL = "";
 
     targets.forEach(function (el, index) {
       if (el.hasAttribute("data-reveal")) {
-        el.style.transitionDelay = Math.min(index % 5, 4) * 80 + "ms";
+        el.style.animationDelay = Math.min(index % 5, 4) * 80 + "ms";
       }
       observer.observe(el);
     });
@@ -936,12 +1132,15 @@ var CONTACT_EMAIL = "";
       initPreloader,
       initHeader,
       initNav,
+      initSmoothScroll,
+      initSplit,
       initReveal,
       initCounters,
       initSparks,
       initSheen,
       initAmbient,
       initMagnets,
+      initTilt,
       initRail,
       initFaq,
       initJumpNav,

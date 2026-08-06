@@ -319,7 +319,20 @@ label,
     inset 0 1px 0 var(--glass-highlight),
     inset 0 -1px 0 rgba(188, 208, 255, 0.05),
     0 34px 70px -34px rgba(0, 0, 0, 0.95);
-  transition: border-color 0.5s var(--ease), transform 0.6s var(--ease), box-shadow 0.5s var(--ease);
+  /* `translate` carries the hover lift, not `transform`: the reveal system owns
+     `transform`, and `.is-in { transform: none }` outranks any :hover rule. */
+  transition: border-color 0.5s var(--ease), translate 0.6s var(--ease), box-shadow 0.5s var(--ease),
+    rotate 0.5s var(--ease);
+}
+
+/* Card tilt. main.js writes the `rotate` property directly, which the browser
+   applies before `transform`, so a card's hover lift and a button's magnetic
+   `translate` all compose instead of overwriting each other. */
+.modes-grid,
+.stats-grid,
+.service-list,
+.rail {
+  perspective: 1600px;
 }
 
 /* Pointer-tracked sheen. --mx/--my are written by main.js. */
@@ -410,15 +423,27 @@ html.intro-done .preloader {
 }
 
 /* ---------- 6. Reveal ---------- */
+/* The revealed state is an animation, not a transition. A `transition` here
+   would be the winning declaration for the whole element, silently replacing
+   the hover transitions each card sets for itself. */
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
-  transition: opacity 1s var(--ease), transform 1s var(--ease);
 }
 
 .js [data-reveal].is-in {
-  opacity: 1;
-  transform: none;
+  animation: reveal-in 1s var(--ease) both;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* The extra padding is descender room — at hero sizes a `g` or `q` was being
@@ -456,6 +481,27 @@ html.intro-done .preloader {
   transition-delay: 0.27s;
 }
 
+/* Word masks. main.js rebuilds plain headings into these, trading the block
+   fade of [data-reveal] for type rising out of its own line box. */
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.js [data-words] .word > span {
+  display: inline-block;
+  transform: translateY(112%);
+  transition: transform 1.05s var(--ease);
+  transition-delay: calc(var(--w, 0) * 42ms);
+}
+
+.js [data-words].is-in .word > span {
+  transform: none;
+}
+
 /* The `js` class is set in the document head so the preloader can avoid a
    flash. If main.js does not arrive, make the hidden reveal content usable
    when the preloader's own seven-second failsafe clears the screen. */
@@ -477,7 +523,8 @@ html.intro-done .preloader {
   }
 
   .js [data-reveal],
-  .js [data-lines] .line > span {
+  .js [data-lines] .line > span,
+  .js [data-words] .word > span {
     opacity: 1;
     transform: none;
     transition: none;
@@ -556,19 +603,36 @@ header.is-stuck .scroll-progress {
   letter-spacing: -0.03em;
 }
 
-.logo::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--ink);
-  box-shadow: 0 0 14px 2px var(--iris-soft);
+.logo-mark {
+  width: 23px;
+  height: 23px;
+  flex: 0 0 auto;
+  fill: currentColor;
   animation: pulse 3.4s var(--ease-io) infinite;
+  transition: rotate 0.9s var(--ease);
+}
+
+/* A third of a turn maps the mark exactly onto itself. */
+.logo:hover .logo-mark {
+  rotate: 120deg;
+}
+
+.logo-core {
+  fill: var(--iris);
+  opacity: 0.5;
+}
+
+.logo-web {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 14px 2px var(--iris-soft); }
-  50% { box-shadow: 0 0 22px 5px var(--iris-soft); }
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(109, 140, 255, 0.42)); }
+  50% { filter: drop-shadow(0 0 13px rgba(109, 140, 255, 0.72)); }
 }
 
 header nav ul {
@@ -811,15 +875,20 @@ main {
   opacity: 0;
   transition: opacity 1.6s var(--ease);
   /* Radial keeps the crystal from ending on a hard edge; the linear fades the
-     side that runs under the headline so type always stays first. */
+     side that runs under the headline so type always stays first. Both spellings
+     carry both layers — a lone `-webkit-mask-image` after the standard property
+     is an alias for it in Blink and silently drops the second layer. */
+  -webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, #000 46%);
   mask-image: radial-gradient(closest-side, #000 58%, transparent 100%),
-    linear-gradient(90deg, transparent 0%, #000 34%);
+    linear-gradient(90deg, transparent 0%, #000 46%);
+  -webkit-mask-composite: source-in;
   mask-composite: intersect;
-  -webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
 }
 
 @supports not (mask-composite: intersect) {
   .hero-canvas {
+    -webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
     mask-image: radial-gradient(closest-side, #000 58%, transparent 100%);
   }
 }
@@ -854,10 +923,21 @@ main {
 }
 
 .hero h1 .glow {
-  background: linear-gradient(100deg, var(--ink) 20%, var(--iris) 60%, var(--mint));
+  background: linear-gradient(100deg, var(--ink) 8%, var(--iris) 42%, var(--mint) 62%, var(--ink) 96%);
+  background-size: 240% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: glow-drift 11s var(--ease-io) infinite;
+}
+
+@keyframes glow-drift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .hero-lower {
@@ -915,6 +995,27 @@ main {
 @keyframes cue {
   0%, 100% { transform: scaleY(0.35); transform-origin: top; opacity: 0.4; }
   50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+}
+
+/* The hero recedes as the page moves past it rather than simply scrolling
+   away. Applied to the wrappers, so the reveal animations on their children
+   are untouched. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-body,
+    .hero-foot {
+      animation: hero-recede linear both;
+      animation-timeline: view();
+      animation-range: exit 50% exit 100%;
+    }
+
+    @keyframes hero-recede {
+      to {
+        opacity: 0.12;
+        transform: translateY(-40px);
+      }
+    }
+  }
 }
 
 /* ---------- 12. Marquee ---------- */
@@ -1119,7 +1220,7 @@ main {
 }
 
 .mode-card:hover {
-  transform: translateY(-6px);
+  translate: 0 -6px;
 }
 
 /* ---------- 16. Systems rail ---------- */
@@ -1260,7 +1361,7 @@ main {
   background: linear-gradient(158deg, var(--glass-top), var(--glass-bottom));
   border: 1px solid var(--glass-edge);
   overflow: hidden;
-  transition: border-color 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: border-color 0.5s var(--ease), translate 0.5s var(--ease);
 }
 
 .process-list li::before {
@@ -1277,7 +1378,7 @@ main {
 
 .process-list li:hover {
   border-color: var(--glass-edge-lit);
-  transform: translateX(6px);
+  translate: 6px 0;
 }
 
 .process-list li:hover::before {
@@ -1653,7 +1754,7 @@ main {
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
+  translate: 0 -5px;
 }
 
 .service-card-head {
@@ -2117,12 +2218,12 @@ main {
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-edge);
   background: linear-gradient(158deg, var(--glass-top), var(--glass-bottom));
-  transition: border-color 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: border-color 0.5s var(--ease), translate 0.5s var(--ease);
 }
 
 .principles-grid article:hover {
   border-color: var(--glass-edge-lit);
-  transform: translateY(-5px);
+  translate: 0 -5px;
 }
 
 .principles-grid article > span {
@@ -2614,7 +2715,8 @@ body > footer {
 
   /* Reveals never run for a print-only render, so opt every one of them in. */
   .js [data-reveal],
-  .js [data-lines] .line > span {
+  .js [data-lines] .line > span,
+  .js [data-words] .word > span {
     opacity: 1;
     transform: none;
   }
