@@ -10,7 +10,7 @@
 
    With both blank the form validates but cannot deliver, and says so.
    -------------------------------------------------------------------------- */
-var FORM_ENDPOINT = "";
+var FORM_ENDPOINT = "https://api.web3forms.com/submit";
 var CONTACT_EMAIL = "";
 
 (function () {
