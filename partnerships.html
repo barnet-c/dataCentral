@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | DataCentral</title>
-  <meta name="description" content="Book a DataCentral assessment and find out where AI could give your business time back, backed by the research." />
+  <title>Partnerships | DataCentral</title>
+  <meta name="description" content="The institutions and programmes backing DataCentral's work building AI systems for business." />
   <meta name="theme-color" content="#05060a" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305060a'/%3E%3Ccircle cx='16' cy='16.5' r='4.6' fill='%236d8cff' opacity='.55'/%3E%3Cg fill='none' stroke='%23f6f8fc' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 7 7.8 21.2h16.4z'/%3E%3Cpath d='M16 7v9.5M16 16.5 7.8 21.2M16 16.5 24.2 21.2'/%3E%3C/g%3E%3Cg fill='%23f6f8fc'%3E%3Ccircle cx='16' cy='7' r='2.7'/%3E%3Ccircle cx='7.8' cy='21.2' r='2.7'/%3E%3Ccircle cx='24.2' cy='21.2' r='2.7'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -54,9 +54,9 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="industries.html">Industries</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="partnerships.html">Partnerships</a></li>
+          <li><a href="partnerships.html" class="active">Partnerships</a></li>
           <li><a href="research.html">Research</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
       <div class="nav-actions">
@@ -66,76 +66,28 @@
     <div class="scroll-progress" aria-hidden="true"></div>
   </header>
 
-  <main id="main" class="contact-page">
+  <main id="main" class="partnerships-page">
     <div class="page-header">
       <div class="page-canvas" data-crystal aria-hidden="true"></div>
-      <span class="page-kicker" data-reveal>Your assessment</span>
-      <h1 data-reveal>Let's find the first fix worth making.</h1>
-      <p>Curious how much time AI could give your business back? Let's find out. One focused conversation, a fixed fee, and a clear picture of where the time goes, backed by the research, and what it would take to fix it.</p>
-      <a href="#contact-form" class="btn">Book your assessment</a>
+      <span class="page-kicker" data-reveal>Partnerships</span>
+      <h1 data-reveal>Who stands behind the work.</h1>
+      <p>We build on the shoulders of institutions that put real resources behind early companies, programmes and networks that give us the tools, data and credibility to close gaps for businesses faster, backed by real research.</p>
     </div>
 
-    <section class="section" id="contact-form">
-      <h2 class="section-title" data-reveal>Get In Touch</h2>
-      <div class="contact-layout">
-        <aside class="contact-aside" data-reveal>
-          <span class="section-kicker" data-reveal>What happens next</span>
-          <h3>A focused conversation, not a sales ambush.</h3>
-          <ol>
-            <li><span>01</span><p>We learn how enquiries, quotes, customers, and admin move through your business.</p></li>
-            <li><span>02</span><p>We identify the gaps with the clearest cost and fastest path to improvement.</p></li>
-            <li><span>03</span><p>You leave with a practical first step, whether we build it or not.</p></li>
-          </ol>
-          <!-- Populated from CONTACT_EMAIL in main.js. Stays hidden until that is set,
-               so a placeholder address never ships to a visitor. -->
-          <p class="contact-direct" data-contact-direct hidden>
-            Prefer email? <a href="#" data-contact-link></a>
-          </p>
-        </aside>
-        <!-- novalidate: we render our own styled field errors instead of the
-             browser's native tooltips, which never matched the rest of the page. -->
-        <form id="contact-form-el" class="contact-form glass" data-reveal novalidate>
-          <input type="hidden" name="access_key" value="2e88ff2f-cd64-4f6d-868c-1ddc63696c2d" />
-          <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required />
-          </div>
-          <div>
-            <label for="business">Business Name</label>
-            <input type="text" id="business" name="business" placeholder="Your business name" />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required />
-          </div>
-          <div>
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
-          </div>
-          <div>
-            <label for="industry">Industry</label>
-            <select id="industry" name="industry">
-              <option value="">Select your industry</option>
-              <option>Home Services</option>
-              <option>Healthcare</option>
-              <option>Legal</option>
-              <option>Real Estate</option>
-              <option>Insurance</option>
-              <option>Hospitality</option>
-              <option>Retail</option>
-              <option>Accounting</option>
-              <option>Education</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="message">Message: What's going on in your business right now?</label>
-            <textarea id="message" name="message" placeholder="Tell us where your week disappears..."></textarea>
-          </div>
-          <button type="submit" class="btn">Send Message</button>
-          <p id="contact-form-status" class="contact-form-status" role="status" aria-live="polite" hidden></p>
-        </form>
+    <section class="partners-band">
+      <div class="partners-inner">
+        <ul class="partners-logos" data-reveal>
+          <li><img src="assets/uw-comotion.png" alt="UW CoMotion: Your Innovation Partner" loading="lazy" /></li>
+          <li><img src="assets/microsoft-for-startups.png" alt="Proud to partner with Microsoft for Startups" loading="lazy" /></li>
+        </ul>
       </div>
+    </section>
+
+    <section class="closing-cta">
+      <span class="section-kicker" data-reveal>A practical first step</span>
+      <h2 data-reveal>Backed the same way we build: proven first.</h2>
+      <p data-reveal>One focused conversation, a fixed fee, and a clear first move at the end of it, whether we build it or not.</p>
+      <a href="contact.html" class="btn" data-reveal>Book your assessment</a>
     </section>
   </main>
 

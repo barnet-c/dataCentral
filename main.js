@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------------
-   Contact configuration — set one of these before launch.
+   Contact configuration: set one of these before launch.
 
    FORM_ENDPOINT  Preferred. A form-to-inbox URL (Formspree, Basin, Netlify
                   Forms, your own handler). The form posts in the background
@@ -189,7 +189,7 @@ var CONTACT_EMAIL = "";
   function initTilt() {
     if (!fine || reduced) return;
 
-    var cards = document.querySelectorAll(".mode-card, .rail-card, .service-card, .stat");
+    var cards = document.querySelectorAll(".mode-card, .rail-card, .service-card, .stat, .research-card");
     if (!cards.length) return;
 
     var LIMIT = 4.2;
@@ -269,8 +269,8 @@ var CONTACT_EMAIL = "";
       window.requestAnimationFrame(frame);
     }
 
-    // Anything we did not drive — a keyboard page-down, an anchor jump, a
-    // scrollbar drag, scrollIntoView — hands control straight back to the
+    // Anything we did not drive (a keyboard page-down, an anchor jump, a
+    // scrollbar drag, scrollIntoView) hands control straight back to the
     // browser and re-anchors the next gesture to wherever the page now is.
     window.addEventListener(
       "scroll",
@@ -386,7 +386,7 @@ var CONTACT_EMAIL = "";
     if (reduced) return;
 
     document.querySelectorAll("h1[data-reveal], h2[data-reveal]").forEach(function (el) {
-      // Only a single uninterrupted run of text is safe to rebuild — anything
+      // Only a single uninterrupted run of text is safe to rebuild. Anything
       // carrying nested markup keeps the structure the author wrote.
       if (el.childNodes.length !== 1 || el.firstChild.nodeType !== 3) return;
 
@@ -525,7 +525,7 @@ var CONTACT_EMAIL = "";
 
   /* ---------- Sparklines ---------- */
   function initSparks() {
-    // Written as a custom property, not as inline stroke-dashoffset — an inline
+    // Written as a custom property, not as inline stroke-dashoffset. An inline
     // value would outrank the `.stat.is-in` rule that draws the line in.
     document.querySelectorAll(".spark path").forEach(function (path) {
       if (typeof path.getTotalLength !== "function") return;
@@ -592,7 +592,7 @@ var CONTACT_EMAIL = "";
     if (!list) return;
 
     // Wire the button to its answer and take collapsed answers out of the
-    // accessibility tree — a zero-height panel is still readable otherwise.
+    // accessibility tree. A zero-height panel is still readable otherwise.
     list.querySelectorAll(".faq-item").forEach(function (item, index) {
       var button = item.querySelector(".faq-q");
       var panel = item.querySelector(".faq-a");
@@ -676,7 +676,7 @@ var CONTACT_EMAIL = "";
 
     for (var i = 0; i < tabs.length; i++) {
       var panel = document.getElementById(tabs[i].getAttribute("aria-controls"));
-      // A row without its panel would strand the whole index — leave the
+      // A row without its panel would strand the whole index. Leave the
       // no-JS layout in place instead, where every panel is already visible.
       if (!panel) return;
       panels.push(panel);
@@ -908,7 +908,7 @@ var CONTACT_EMAIL = "";
       visibilityObserver.observe(holder);
     }
 
-    // The crystal turns as the hero leaves — the scroll drives the object
+    // The crystal turns as the hero leaves. The scroll drives the object
     // rather than just moving past it.
     var scroll = 0;
     function onScroll() {
@@ -1071,7 +1071,7 @@ var CONTACT_EMAIL = "";
             if (response.ok) {
               form.reset();
               clearFieldErrors();
-              showStatus("Thanks — your message is on its way. We'll be in touch soon.", "is-success");
+              showStatus("Thanks, your message is on its way. We'll be in touch soon.", "is-success");
               return;
             }
 
@@ -1096,7 +1096,7 @@ var CONTACT_EMAIL = "";
       if (!email) {
         // Visitor-facing copy, not a note to the developer.
         status.textContent =
-          "This form isn't connected to an inbox yet. Please try again shortly — we're switching it on.";
+          "This form isn't connected to an inbox yet. Please try again shortly. We're switching it on.";
         status.className = "contact-form-status is-error";
         status.hidden = false;
         return;

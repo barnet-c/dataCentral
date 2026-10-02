@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DataCentral — visual system v2
+   DataCentral: visual system v2
    Direction: premium dark glass, finance-grade precision, AI-future light.
    Deep void ground, aurora light sources, refractive surfaces, oversized
    neo-grotesque display type, scroll-driven immersion.
@@ -9,26 +9,26 @@
 :root {
   color-scheme: dark;
 
-  /* Ground — near-black with a cold cast, never flat #000 */
+  /* Ground: near-black with a cold cast, never flat #000 */
   --void: #05060a;
   --void-2: #080a11;
   --void-3: #0c0f18;
 
-  /* Ink — deliberately short of white. Pure #f6f8fc on this ground is ~19:1
+  /* Ink: deliberately short of white. Pure #f6f8fc on this ground is ~19:1
      and glares badly at display sizes, so the top end is a cool off-white. */
   --ink: #dbe2f0;
   --ink-2: rgba(219, 226, 240, 0.63);
   --ink-3: rgba(219, 226, 240, 0.41);
   --ink-4: rgba(219, 226, 240, 0.24);
 
-  /* Spectrum — used as light, not as fill. Never colour alone for meaning. */
+  /* Spectrum: used as light, not as fill. Never colour alone for meaning. */
   --iris: #6d8cff;
   --iris-soft: rgba(109, 140, 255, 0.5);
   --mint: #7cf0c8;
   --amber: #ffc98a;
   --rose: #ff9d8a;
 
-  /* Glass — tinted toward the aurora so surfaces refract rather than fog. */
+  /* Glass: tinted toward the aurora so surfaces refract rather than fog. */
   --glass-top: rgba(188, 208, 255, 0.085);
   --glass-bottom: rgba(188, 208, 255, 0.022);
   --glass-edge: rgba(198, 214, 255, 0.115);
@@ -37,7 +37,7 @@
   --hairline: rgba(198, 214, 255, 0.1);
   --hairline-soft: rgba(198, 214, 255, 0.055);
 
-  /* Semantic — always paired with a text label */
+  /* Semantic: always paired with a text label */
   --pos: #7cf0c8;
   --mid: #ffc98a;
   --neg: #ff9d8a;
@@ -63,7 +63,7 @@
 
 /* ---------- 1b. Cross-document page transitions ---------- */
 /* Turns five separate documents into one continuous surface. Silently ignored
-   by browsers without support — navigation just cuts, as it did before. */
+   by browsers without support. Navigation just cuts, as it did before. */
 @view-transition {
   navigation: auto;
 }
@@ -125,7 +125,7 @@ body {
   color: var(--ink);
   background: var(--void);
   -webkit-font-smoothing: antialiased;
-  /* `clip`, not `hidden` — `hidden` makes body a scroll container and kills
+  /* `clip`, not `hidden`: `hidden` makes body a scroll container and kills
      position: sticky for the pinned panels and the services jump-nav. */
   overflow-x: clip;
 }
@@ -331,7 +331,8 @@ label,
 .modes-grid,
 .stats-grid,
 .service-list,
-.rail {
+.rail,
+.research-grid {
   perspective: 1600px;
 }
 
@@ -446,7 +447,7 @@ html.intro-done .preloader {
   }
 }
 
-/* The extra padding is descender room — at hero sizes a `g` or `q` was being
+/* The extra padding is descender room: at hero sizes a `g` or `q` was being
    clipped by the overflow that makes the line-mask reveal work. */
 .line {
   display: block;
@@ -610,6 +611,16 @@ header.is-stuck .scroll-progress {
   fill: currentColor;
   animation: pulse 3.4s var(--ease-io) infinite;
   transition: rotate 0.9s var(--ease);
+}
+
+header .logo {
+  gap: 13px;
+  font-size: 1.32rem;
+}
+
+header .logo-mark {
+  width: 30px;
+  height: 30px;
 }
 
 /* A third of a turn maps the mark exactly onto itself. */
@@ -876,7 +887,7 @@ main {
   transition: opacity 1.6s var(--ease);
   /* Radial keeps the crystal from ending on a hard edge; the linear fades the
      side that runs under the headline so type always stays first. Both spellings
-     carry both layers — a lone `-webkit-mask-image` after the standard property
+     carry both layers: a lone `-webkit-mask-image` after the standard property
      is an alias for it in Blink and silently drops the second layer. */
   -webkit-mask-image: radial-gradient(closest-side, #000 58%, transparent 100%),
     linear-gradient(90deg, transparent 0%, #000 46%);
@@ -912,7 +923,7 @@ main {
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 10.4vw, 11rem);
+  font-size: clamp(2.6rem, 9vw, 9.5rem);
   line-height: 0.86;
   letter-spacing: -0.052em;
   margin-bottom: clamp(32px, 4vw, 56px);
@@ -1103,7 +1114,7 @@ main {
   font-size: 0.98rem;
 }
 
-/* ---------- 14. Pinned leak panels ---------- */
+/* ---------- 14. Pinned gap panels ---------- */
 .pins {
   position: relative;
   padding-bottom: clamp(40px, 6vw, 96px);
@@ -1658,6 +1669,10 @@ main {
   margin-bottom: clamp(28px, 3.4vw, 44px);
 }
 
+.industries-page .page-header h1 {
+  font-size: clamp(2.4rem, 7vw, 6.6rem);
+}
+
 .page-header p {
   max-width: 52ch;
   color: var(--ink-2);
@@ -1990,7 +2005,7 @@ main {
   outline-offset: 2px;
 }
 
-/* Only the panel that just became visible animates — the first paint of the
+/* Only the panel that just became visible animates. The first paint of the
    page is handled by the shared reveal system instead. */
 .industry-panel.is-swapping {
   animation: industry-swap 0.62s var(--ease) both;
@@ -2305,6 +2320,81 @@ main {
 
 .partners-logos li:hover img {
   opacity: 0.88;
+}
+
+/* ---------- 25c. Research ---------- */
+.research-band {
+  padding: 0 var(--gutter) var(--bay);
+}
+
+.research-inner {
+  max-width: var(--shell);
+  margin: 0 auto;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.research-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 3vw, 40px);
+}
+
+.research-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+/* A white chip behind every logo neutralises each org's own brand colour
+   (navy SBA text, black Goldman Sachs wordmark, green QuickBooks mark) so
+   every mark reads the same way against the dark card. */
+.research-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.research-logo img {
+  display: block;
+  max-height: 20px;
+  max-width: 110px;
+  object-fit: contain;
+}
+
+.research-card h3 {
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  margin-bottom: 14px;
+}
+
+.research-card p {
+  color: var(--ink-2);
+  font-size: 0.97rem;
+  flex: 1;
+}
+
+.research-card strong {
+  color: var(--ink);
+}
+
+.research-card .link-arrow {
+  margin-top: 22px;
+}
+
+.research-card:hover {
+  translate: 0 -4px;
 }
 
 @media (max-width: 720px) {
@@ -2751,6 +2841,7 @@ body > footer {
   .service-list,
   .principles-grid,
   .modes-grid,
+  .research-grid,
   .contact-form,
   .footer-container {
     grid-template-columns: 1fr;
