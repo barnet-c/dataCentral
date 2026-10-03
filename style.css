@@ -331,8 +331,7 @@ label,
 .modes-grid,
 .stats-grid,
 .service-list,
-.rail,
-.research-grid {
+.rail {
   perspective: 1600px;
 }
 
@@ -2322,7 +2321,7 @@ main {
   opacity: 0.88;
 }
 
-/* ---------- 25c. Research ---------- */
+/* ---------- 25c. Research report ---------- */
 .research-band {
   padding: 0 var(--gutter) var(--bay);
 }
@@ -2332,75 +2331,138 @@ main {
   margin: 0 auto;
 }
 
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.research-card {
-  display: flex;
-  flex-direction: column;
-  padding: clamp(28px, 3vw, 40px);
-}
-
-.research-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 14px;
-  color: var(--ink-3);
-  font-size: 0.85rem;
-  margin-bottom: 16px;
-}
-
-/* A white chip behind every logo neutralises each org's own brand colour
-   (navy SBA text, black Goldman Sachs wordmark, green QuickBooks mark) so
-   every mark reads the same way against the dark card. */
-.research-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
-  padding: 5px 10px;
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.94);
-}
-
-.research-logo img {
+.report-byline {
   display: block;
-  max-height: 20px;
-  max-width: 110px;
-  object-fit: contain;
+  margin-top: 18px;
+  color: var(--ink-3);
+  font-size: 0.9rem;
 }
 
-.research-card h3 {
-  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-  margin-bottom: 14px;
+.report-article {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: clamp(40px, 5vw, 72px) var(--gutter) 0;
 }
 
-.research-card p {
+.report-lead {
+  max-width: 68ch;
+}
+
+.report-bullets {
+  display: grid;
+  gap: 14px;
+  max-width: 68ch;
+  margin-top: clamp(22px, 2.6vw, 32px);
+}
+
+.report-bullets li {
+  position: relative;
+  padding-left: 22px;
   color: var(--ink-2);
-  font-size: 0.97rem;
-  flex: 1;
+  font-size: 1.02rem;
+  line-height: 1.6;
 }
 
-.research-card strong {
+.report-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--iris);
+}
+
+.report-bullets strong {
   color: var(--ink);
 }
 
-.research-card .link-arrow {
-  margin-top: 22px;
+.report-callout {
+  max-width: 68ch;
+  margin-top: clamp(24px, 3vw, 36px);
+  padding: 20px 26px;
+  font-size: 0.95rem;
+  color: var(--ink-2);
 }
 
-.research-card:hover {
-  translate: 0 -4px;
+.report-callout strong {
+  color: var(--ink);
 }
 
-@media (max-width: 720px) {
-  .partners-logos {
-    grid-template-columns: 1fr;
-  }
+.about-chapter-body .report-table-wrap {
+  margin: clamp(20px, 2.6vw, 30px) 0;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+}
+
+.report-table th {
+  color: var(--ink-3);
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.report-table td {
+  color: var(--ink-2);
+}
+
+.report-table td:first-child {
+  color: var(--ink);
+}
+
+.about-chapter-body h3 {
+  margin: clamp(26px, 3vw, 36px) 0 14px;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.about-chapter-body ol.report-list {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding-left: 22px;
+  color: var(--ink-2);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.about-chapter-body ul.report-list {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding-left: 22px;
+  list-style: disc;
+  color: var(--ink-2);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.report-list strong {
+  color: var(--ink);
+}
+
+.report-sources {
+  display: grid;
+  gap: 10px;
+  max-width: 68ch;
+  margin-top: 14px;
+  color: var(--ink-2);
+  font-size: 0.95rem;
 }
 
 /* ---------- 26. Contact ---------- */
@@ -2841,10 +2903,14 @@ body > footer {
   .service-list,
   .principles-grid,
   .modes-grid,
-  .research-grid,
   .contact-form,
   .footer-container {
     grid-template-columns: 1fr;
+  }
+
+  .report-table {
+    display: block;
+    overflow-x: auto;
   }
 
   .industry-leaks > div,

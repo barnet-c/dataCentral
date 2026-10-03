@@ -189,7 +189,7 @@ var CONTACT_EMAIL = "";
   function initTilt() {
     if (!fine || reduced) return;
 
-    var cards = document.querySelectorAll(".mode-card, .rail-card, .service-card, .stat, .research-card");
+    var cards = document.querySelectorAll(".mode-card, .rail-card, .service-card, .stat");
     if (!cards.length) return;
 
     var LIMIT = 4.2;
