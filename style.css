@@ -2465,6 +2465,19 @@ main {
   font-size: 0.95rem;
 }
 
+.report-sources a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--hairline);
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease);
+}
+
+.report-sources a:hover {
+  color: var(--iris);
+  text-decoration-color: var(--iris);
+}
+
 /* ---------- 26. Contact ---------- */
 .contact-layout {
   display: grid;
