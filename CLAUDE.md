@@ -8,6 +8,7 @@ A static marketing website for DataCentral (AI systems for businesses) — seven
 
 - `index.html`, `industries.html`, `about.html`, `partnerships.html`, `research.html`, `contact.html` — the six pages linked in the live nav, each a full `<head>`+`<body>` document sharing the same header/footer markup. Nav order: Home → Industries → About → Partnerships → Research → Contact.
 - `services.html` — a seventh page that still exists with full content but is intentionally unlinked from every page's nav/footer (removed from rotation on request); re-adding it means restoring its `<li>` entries everywhere the pattern above appears.
+- `DataCentral_Report.pdf` — downloadable version of the report on `research.html` (linked from the page header). It's a separate document, not generated from the HTML, so update both when the report text changes.
 - `style.css` — single stylesheet for the whole site, organized as numbered sections (see below).
 - `main.js` — single IIFE behavior file, organized as named `init*()` functions.
 - `assets/` — static images. Only the two partner logos on `partnerships.html` (`uw-comotion.png`, `microsoft-for-startups.png`) are referenced. The five research-source logos (Census, SBA, FRBSF, Goldman Sachs, Intuit) are orphaned: `research.html` became a text-only report and no longer uses them.
